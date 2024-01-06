@@ -28,7 +28,7 @@ Games can be added manually or by using the -a or -d flag for interactive additi
 Game Binder looks for a PNG file that has the same basename as the currently highlighted entry in the appropriate subdirectory of the images directory.
 
 #### **Setting ROM paths**
-The file *preferences.conf* contains variables that hold the ROM path for each supported emulator (e.g. "/mnt/games/ROMS/PSP").
+The file *preferences.conf* contains variables that hold the ROM path for each supported emulator. ROM paths should always be enclosed in double quotes and should not end in a forward slash.
 
 ## **Dependencies**
 * [fzf](https://github.com/junegunn/fzf)
