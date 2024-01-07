@@ -115,6 +115,97 @@ launch() {
 	esac
 }
 
+promptFilter() {
+while true; do
+clear
+echo "Select Runner(s) To Display Games From: "
+# Create search and preview fzf windows for each available runner
+# The user can choose to only view games from a single runner, selecting multiple runners is currently not supported
+filter=$(echo -e "$availableRunnersDisplay" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+file_path=images/runners/{}
+file_name="${file_path%.*}"
+preview_file="${file_name}.png"
+if [ -e "$preview_file" ]; then
+  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "$preview_file"
+else
+  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "images/error.png"
+fi
+' --preview-window noborder,up,30)
+
+# If input not given for filter, exit script
+if [ -z "$filter" ]; then
+	clear
+	exit 0
+fi
+
+# If filter is All, the variable is emptied
+if [ "$filter" == "All" ]; then
+	filter=""
+fi
+
+# Each line that fits our filter criteria is saved to this variable
+filtered=$(awk -v filter="$filter" -v availableRunners="$availableRunners" 'BEGIN { FS = "," } {
+	if (filter == "") {
+		if (index(availableRunners, $2) > 0) {
+		print $1;
+	}
+	}
+else {
+	split(filter, runners, /\n/);
+	for (i in runners) {
+		if ($2 == runners[i]) {
+		print $1;
+	   }
+	}
+}
+}' collection.csv)
+
+
+clear
+break
+done
+}
+
+promptGame() {
+	while true; do
+echo "Select Game To Launch: "
+# Create search and preview fzf windows for each game fitting our criteria
+selection=$(echo -e "$filtered" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+file_path=images/games/{}
+file_name="${file_path%.*}"
+preview_file="${file_name}.png"
+if [ -e "$preview_file" ]; then
+  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "$preview_file"
+else
+  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "images/error.png"
+fi
+' --preview-window noborder,up,30)
+
+# Clear image after selection is made
+kitty icat --clear
+
+# The loop breaks if no game is selected
+if [ -z "$selection" ]; then
+	break
+fi
+
+# Grab the other fields of the line in our collection whose first field is the same as the selected game
+runner=$(awk 'BEGIN { FS = "," } /'"$selection"'/ { print $2 }' collection.csv)
+gameID=$(awk 'BEGIN { FS = "," } /'"$selection"'/ { print $3 }' collection.csv)
+
+# Launch the selected game
+launch
+
+clear
+
+# Clear screen once game launches
+sleep 1
+exit 0
+done
+}
+
+
+
 usage() {
 	printf "
 Usage:
@@ -161,7 +252,6 @@ while getopts "adh" flag; do
 	esac
 done
 
-echo "Select Runner(s) To Display Games From: "
 unavailableRunners=""
 for runner in $(echo -e "$SUPPORTED_RUNNERS"); do
 	if [[ ! $(enumerateRunners "$runner") ]]; then
@@ -181,72 +271,10 @@ done
 availableRunners=$(echo -e "$availableRunners" | sed -e '$!b' -e '/^\n*$/d')
 availableRunnersDisplay="All\n$availableRunners"
 
-# Create search and preview fzf windows for each available runner
-# The user can choose to only view games from a single runner, selecting multiple runners is currently not supported
-filter=$(echo -e "$availableRunnersDisplay" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
-file_path=images/runners/{}
-file_name="${file_path%.*}"
-preview_file="${file_name}.png"
-if [ -e "$preview_file" ]; then
-  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "$preview_file"
-else
-  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "images/error.png"
-fi
-' --preview-window noborder,up,30)
 
-# If filter is All, the variable is emptied
-if [ "$filter" == "All" ]; then
-	filter=""
-fi
 
-# Each line that fits our filter criteria is saved to this variable
-filtered=$(awk -v filter="$filter" -v availableRunners="$availableRunners" 'BEGIN { FS = "," } {
-	if (filter == "") {
-		if (index(availableRunners, $2) > 0) {
-		print $1;
-	}
-	}
-else {
-	split(filter, runners, /\n/);
-	for (i in runners) {
-		if ($2 == runners[i]) {
-		print $1;
-	   }
-	}
-}
-}' collection.csv)
+while true; do
+promptFilter
 
-clear
-
-echo "Select Game To Launch: "
-
-# Create search and preview fzf windows for each game fitting our criteria
-selection=$(echo -e "$filtered" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
-file_path=images/games/{}
-file_name="${file_path%.*}"
-preview_file="${file_name}.png"
-if [ -e "$preview_file" ]; then
-  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "$preview_file"
-else
-  kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "images/error.png"
-fi
-' --preview-window noborder,up,30)
-
-# Clear image after selection is made
-kitty icat --clear
-
-# The script exits if no game is selected
-if [ -z "$selection" ]; then
-	exit 0
-fi
-
-# Grab the other fields of the line in our collection whose first field is the same as the selected game
-runner=$(awk 'BEGIN { FS = "," } /'"$selection"'/ { print $2 }' collection.csv)
-gameID=$(awk 'BEGIN { FS = "," } /'"$selection"'/ { print $3 }' collection.csv)
-
-# Launch the selected game
-launch
-
-# Clear screen once game launches
-sleep 1
-clear
+promptGame
+done
