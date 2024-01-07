@@ -2,6 +2,7 @@
 The purpose of this script is to allow the user to consolidate their game shortcuts from various runners into a set of easily maintainable plain text files and filter/search this collection. The script currently supports showing preview images for the highlighted runner/game through the kitty terminal graphics protocol.  
 
 #### **Supported Runners:**
+  * **[bsnes](https://github.com/bsnes-emu/bsnes) -** SNES Emulation
   * **[Citra](https://github.com/citra-emu/citra) -** 3DS Emulation
   * **[DeSmuME](https://github.com/TASEmulators/desmume) -** DS Emulation
   * **[Dolphin](https://github.com/dolphin-emu/dolphin) -** GameCube/Wii Emulation
