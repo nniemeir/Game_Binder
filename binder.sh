@@ -39,7 +39,11 @@ fi
 # It is determined which supported runners are installed
 enumerateRunners() {
 	case $runner in
+	bsnes) flatpak list | grep "dev.bsnes.bsnes" ;;
+	Citra) flatpak list | grep "org.citra_emu.citra" ;;
+	DeSmuME) flatpak list | grep "org.desmume.DeSmuME" ;;
 	Dolphin) flatpak list | grep "org.DolphinEmu.dolphin-emu" ;;
+	Flycast) flatpak list | grep "org.flycast.Flycast" ;;
 	Heroic) command -v heroic ;;
 	Lutris) command -v lutris ;;
 	PCSX2) flatpak list | grep "net.pcsx2.PCSX2" ;;
@@ -69,6 +73,9 @@ removeGame() {
 # The command used to launch the selected game is determined from the matching line's second field
 launch() {
 	case $runner in
+	bsnes)
+		flatpak run dev.bsnes.bsnes "$SNES_ROMS/$gameID" > /dev/null 2>&1 &
+		;;
 	Citra)
 		flatpak run org.citra_emu.citra "$TDS_ROMS/$gameID" > /dev/null 2>&1 &
 		;;
@@ -139,7 +146,7 @@ command -v fzf >/dev/null 2>&1 || {
 }
 
 
-SUPPORTED_RUNNERS="Citra\nDeSmuME\nDolphin\nFlycast\nHeroic\nLutris\nPCSX2\nPPSSPP\nRPCS3\nSteam\nYuzu"
+SUPPORTED_RUNNERS="bsnes\nCitra\nDeSmuME\nDolphin\nFlycast\nHeroic\nLutris\nPCSX2\nPPSSPP\nRPCS3\nSteam\nYuzu"
 
 
 while getopts "adh" flag; do
