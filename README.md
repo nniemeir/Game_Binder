@@ -46,4 +46,4 @@ The file *preferences.conf* contains variables that hold the ROM path for each s
 * Improve error handling
 * Support fzf's multi-mode when creating filter
 * Support filtering by genre
-* Support other common image protocols
+* Support other common image protocols, particularly those that support GIFs
