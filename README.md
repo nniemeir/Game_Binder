@@ -13,7 +13,9 @@ The purpose of this script is to allow the user to consolidate their game shortc
   * **[PPSSPP](https://github.com/hrydgard/ppsspp) -** PSP Emulation
   * **[RPCS3](https://github.com/rpcs3) -** PS3 Emulation
   * **Steam -** PC Games
-  * **[Yuzu](https://github.com/yuzu-emu/yuzu) -** Nintendo Switch Emulation 
+  * **[Yuzu](https://github.com/yuzu-emu/yuzu) -** Nintendo Switch Emulation
+
+\* Only the flatpak versions of the emulators are currently supported
 
 ## **Configuration**
 Game Binder must be configured before it can function as intended.
