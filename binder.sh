@@ -47,6 +47,7 @@ enumerateRunners() {
 	Flycast) flatpak list | grep "org.flycast.Flycast" ;;
 	Heroic) command -v heroic ;;
 	Lutris) command -v lutris ;;
+	mGBA) flatpak list | grep "io.mgba.mGBA" ;;
 	Nestopia) flatpak list | grep "ca._0ldsk00l.Nestopia" ;;
 	PCSX2) flatpak list | grep "net.pcsx2.PCSX2" ;;
 	PPSSPP) flatpak list | grep "org.ppsspp.PPSSPP" ;;
@@ -98,6 +99,9 @@ launch() {
 		;;
 	Lutris)
 		env LUTRIS_SKIP_INIT=1 lutris "lutris:rungameid/$gameID" > /dev/null 2>&1 &
+		;;
+	mGBA)
+		flatpak run io.mgba.mGBA "$GBA_ROMS/$gameID" > /dev/null 2>&1 &
 		;;
 	Nestopia)
 		flatpak run ca._0ldsk00l.Nestopia "$NES_ROMS/$gameID" > /dev/null 2>&1 &
@@ -245,7 +249,7 @@ command -v fzf >/dev/null 2>&1 || {
 }
 
 
-SUPPORTED_RUNNERS="BlastEm\nbsnes\nCitra\nDeSmuME\nDolphin\nFlycast\nHeroic\nLutris\nNestopia\nPCSX2\nPPSSPP\nRPCS3\nSteam\nYuzu"
+SUPPORTED_RUNNERS="BlastEm\nbsnes\nCitra\nDeSmuME\nDolphin\nFlycast\nHeroic\nLutris\nmGBA\nNestopia\nPCSX2\nPPSSPP\nRPCS3\nSteam\nYuzu"
 
 
 while getopts "adh" flag; do
