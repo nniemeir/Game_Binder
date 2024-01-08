@@ -4,6 +4,7 @@ The purpose of this script is to allow the user to consolidate their game shortc
 ## Demonstration
 https://github.com/nniemeir/Game_Binder/assets/91906070/8cccbd0e-6fcb-41f2-9112-470ef01db9cb
 
+ Game preview images have been ommited from this demonstration for copyright reasons.
 
 ## **Supported Runners:**
   * **[bsnes](https://github.com/bsnes-emu/bsnes) -** SNES Emulation
