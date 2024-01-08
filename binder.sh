@@ -30,7 +30,7 @@ fi
 	echo "Enter the Game's gameID or filename: "
 	read -r newGameID
 	validateInput "$newGameID" "ID/Filename"
-	echo "$newTitle,$newRunner,$newgameID" >> collection.csv
+	echo "$newTitle,$newRunner,$newGameID" >> collection.csv
 	sort collection.csv -o collection.csv
 	echo "Game added to collection"
 	exit 0
