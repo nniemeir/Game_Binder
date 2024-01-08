@@ -13,7 +13,7 @@ https://github.com/nniemeir/Game_Binder/assets/91906070/8cccbd0e-6fcb-41f2-9112-
   * **[DeSmuME](https://github.com/TASEmulators/desmume) -** DS Emulation
   * **[Dolphin](https://github.com/dolphin-emu/dolphin) -** GameCube/Wii Emulation
   * **[Flycast](https://github.com/flyinghead/flycast) -** Dreamcast Emulation
-  * **[Heroic](https://github.com/Heroic-Games-Launcher) -** Epic, GOG, & Amazon Prime Gamest
+  * **[Heroic](https://github.com/Heroic-Games-Launcher) -** Epic, GOG, & Amazon Prime Games
   * **[Lutris](https://github.com/lutris) -** Game Manager
   *  **[mGBA](https://github.com/mgba-emu/mgba/) -** GBA Emulation
   * **[PCSX2](https://github.com/PCSX2/pcsx2) -** PS2 Emulation
