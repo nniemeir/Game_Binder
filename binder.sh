@@ -1,5 +1,5 @@
 #!/bin/bash
-#Author: Natalie Niemeir
+#Author: Niemeir
 
 # Ensure that user enters something
 validateInput() {
