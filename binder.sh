@@ -1,5 +1,5 @@
 #!/bin/bash
-#Author: Niemeir
+#Author: Nat Niemeir
 
 # Ensure that user enters something
 validateInput() {
@@ -130,10 +130,9 @@ launch() {
 promptFilter() {
 while true; do
 clear
-echo "Select Runner(s) To Display Games From: "
 # Create search and preview fzf windows for each available runner
 # The user can choose to only view games from a single runner, selecting multiple runners is currently not supported
-filter=$(echo -e "$availableRunnersDisplay" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+filter=$(echo -e "$availableRunnersDisplay" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Runner(s): " --preview='
 file_path=images/runners/{}
 file_name="${file_path%.*}"
 preview_file="${file_name}.png"
@@ -180,9 +179,8 @@ done
 
 promptGame() {
 	while true; do
-echo "Select Game To Launch: "
 # Create search and preview fzf windows for each game fitting our criteria
-selection=$(echo -e "$filtered" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+selection=$(echo -e "$filtered" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Game: " --preview='
 file_path=images/games/{}
 file_name="${file_path%.*}"
 preview_file="${file_name}.png"
