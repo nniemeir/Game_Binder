@@ -16,7 +16,6 @@ https://github.com/nniemeir/Game_Binder/assets/91906070/8cccbd0e-6fcb-41f2-9112-
   * **[Heroic](https://github.com/Heroic-Games-Launcher) -** Epic, GOG, & Amazon Prime Games
   * **[Lutris](https://github.com/lutris) -** Game Manager
   *  **[mGBA](https://github.com/mgba-emu/mgba/) -** GBA Emulation
-  * **[PCSX2](https://github.com/PCSX2/pcsx2) -** PS2 Emulation
   * **[Nestopia](https://github.com/0ldsk00l/nestopia)-** NES Emulation
   * **[PCSX2](https://github.com/PCSX2/pcsx2) -** PS2 Emulation
   * **[PPSSPP](https://github.com/hrydgard/ppsspp) -** PSP Emulation
