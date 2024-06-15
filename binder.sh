@@ -41,7 +41,6 @@ enumerateRunners() {
 	case $runner in
 	BlastEm) flatpak list | grep "com.retrodev.blastem" ;;
 	bsnes) flatpak list | grep "dev.bsnes.bsnes" ;;
-	Citra) flatpak list | grep "org.citra_emu.citra" ;;
 	DeSmuME) flatpak list | grep "org.desmume.DeSmuME" ;;
 	Dolphin) flatpak list | grep "org.DolphinEmu.dolphin-emu" ;;
 	Flycast) flatpak list | grep "org.flycast.Flycast" ;;
@@ -53,7 +52,6 @@ enumerateRunners() {
 	PPSSPP) flatpak list | grep "org.ppsspp.PPSSPP" ;;
 	RPCS3) flatpak list | grep "net.rpcs3.RPCS3" ;;
 	Steam) command -v steam ;;
-	Yuzu) flatpak list | grep "org.yuzu_emu.yuzu" ;;
 	*)
 		echo "Error: Invalid Runner"
 		exit 1
@@ -81,9 +79,6 @@ launch() {
 		;;
 	bsnes)
 		flatpak run dev.bsnes.bsnes "$SNES_ROMS/$gameID" > /dev/null 2>&1 &
-		;;
-	Citra)
-		flatpak run org.citra_emu.citra "$TDS_ROMS/$gameID" > /dev/null 2>&1 &
 		;;
 	DeSmuME)
 		flatpak run org.desmume.DeSmuME "$DS_ROMS/$gameID" > /dev/null 2>&1 &
@@ -117,9 +112,6 @@ launch() {
 		;;
 	Steam)
 		steam steam://rungameid/"$gameID" > /dev/null 2>&1 &
-		;;
-	Yuzu)
-		flatpak run org.yuzu_emu.yuzu -u 1 -f -g "$SWITCH_ROMS/$gameID" > /dev/null 2>&1 &
 		;;
 	*)
 		echo "The runner $runner is not currently supported"
@@ -247,7 +239,7 @@ command -v fzf >/dev/null 2>&1 || {
 }
 
 
-SUPPORTED_RUNNERS="BlastEm\nbsnes\nCitra\nDeSmuME\nDolphin\nFlycast\nHeroic\nLutris\nmGBA\nNestopia\nPCSX2\nPPSSPP\nRPCS3\nSteam\nYuzu"
+SUPPORTED_RUNNERS="BlastEm\nbsnes\nDeSmuME\nDolphin\nFlycast\nHeroic\nLutris\nmGBA\nNestopia\nPCSX2\nPPSSPP\nRPCS3\nSteam"
 
 
 while getopts "adh" flag; do
