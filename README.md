@@ -9,7 +9,6 @@ https://github.com/nniemeir/Game_Binder/assets/91906070/8cccbd0e-6fcb-41f2-9112-
 ## **Supported Runners:**
   * **[BlastEm](https://www.retrodev.com/repos/blastem) -** Mega Drive Emulation
   * **[bsnes](https://github.com/bsnes-emu/bsnes) -** SNES Emulation
-  * **[Citra](https://github.com/citra-emu/citra) -** 3DS Emulation
   * **[DeSmuME](https://github.com/TASEmulators/desmume) -** DS Emulation
   * **[Dolphin](https://github.com/dolphin-emu/dolphin) -** GameCube/Wii Emulation
   * **[Flycast](https://github.com/flyinghead/flycast) -** Dreamcast Emulation
@@ -21,7 +20,6 @@ https://github.com/nniemeir/Game_Binder/assets/91906070/8cccbd0e-6fcb-41f2-9112-
   * **[PPSSPP](https://github.com/hrydgard/ppsspp) -** PSP Emulation
   * **[RPCS3](https://github.com/rpcs3) -** PS3 Emulation
   * **Steam -** PC Games
-  * **[Yuzu](https://github.com/yuzu-emu/yuzu) -** Nintendo Switch Emulation
 
 Only the flatpak versions of the emulators are currently supported.
 
