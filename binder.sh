@@ -1,5 +1,5 @@
 #!/bin/bash
-#Author: Nat Niemeir
+# Author: Jacob Niemeir <nniemeir@protonmail.com>
 
 # Ensure that user enters something
 validateInput() {
